@@ -4,8 +4,6 @@ services:
   frontend:
     build:
       context: ./frontend
-    ports:
-      - 3000:3000
     volumes:
       - /app/node_modules
       - ./frontend:/app
@@ -14,3 +12,15 @@ services:
       - WDS_SOCKET_PORT=3000
       - WDS_SOCKET_HOST=127.0.0.1
       - NODE_ENV=development
+  nginx:
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    volumes:
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - 3000:3000
+    depends_on:
+      - frontend
+    restart: always
+    
