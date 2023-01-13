@@ -2,7 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const backendUrl = 'http://127.0.0.1:8080/hello';
+  console.log(process.env)
+  const backendUrl = `http://127.0.0.1:${process.env.FRONTEND_LOCAL_PORT}/hello`;
   fetch(backendUrl).then(res => console.log(res));
   
   return (

@@ -7,7 +7,7 @@ upstream frontend {
 }
 
 server {
-    listen 8080;
+    listen ${BACKEND_PORT};
 
     location / {
         proxy_pass http://backend;
@@ -18,7 +18,7 @@ server {
 }
 
 server {
-    listen 3000;
+    listen ${FRONTEND_PORT};
 
     location / {
         proxy_pass http://frontend;
