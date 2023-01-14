@@ -8,6 +8,7 @@ upstream frontend {
 
 server {
     listen ${BACKEND_PORT};
+    server_name $DOMAIN_NAME;
 
     location / {
         proxy_pass http://backend;
@@ -19,6 +20,7 @@ server {
 
 server {
     listen ${FRONTEND_PORT};
+    server_name $DOMAIN_NAME;
 
     location / {
         proxy_pass http://frontend;
