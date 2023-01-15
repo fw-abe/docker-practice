@@ -1,7 +1,16 @@
 version: "3.8"
 
 services:
+  frontend:
+    volumes:
+      - frontend-build:/app/build
   nginx:
     volumes:
-        - ./nginx/templates/prod:/etc/nginx/templates
-    restart: 'no'
+      - ./nginx/templates/prod:/etc/nginx/templates
+      - frontend-build:/usr/share/nginx/html
+    ports:
+      - 80:80
+      - 443:443
+      
+volumes:
+  frontend-build:
