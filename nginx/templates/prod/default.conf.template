@@ -1,0 +1,29 @@
+upstream backend {
+    server backend:8080;
+}
+
+server {
+    listen ${BACKEND_PORT};
+    server_name ${DOMAIN_SANS_PROTOCOL};
+
+    location / {
+        proxy_pass http://backend;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}
+
+server {
+    listen ${FRONTEND_PORT};
+    server_name ${DOMAIN_SANS_PROTOCOL};
+
+    root /;
+
+    location / {
+        proxy_pass http://frontend;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+    }
+}

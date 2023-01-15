@@ -9,6 +9,6 @@ if [ ! -f "./$ENV_FILE" ]; then
     exit 1;
 fi
 
-FILE_ARGS=(-f docker-compose.yml -f docker-compose.dev.yml);
+FILE_ARGS=(-f docker-compose.yml -f docker-compose.prod.yml);
 DOCKER_BUILDKIT=1 docker compose "${FILE_ARGS[@]}" build --parallel || exit;
 docker compose "${FILE_ARGS[@]}" --env-file "${ENV_FILE}" up;

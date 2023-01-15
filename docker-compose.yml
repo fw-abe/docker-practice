@@ -15,18 +15,11 @@ services:
       - /app/node_modules
       - ./frontend:/app
     environment:
-      - WATCHPACK_POLLING=true
-      - WDS_SOCKET_PORT=${FRONTEND_PORT:-3000}
-      - FRONTEND_PORT=${FRONTEND_PORT:-3000}
-      - WDS_SOCKET_HOST=127.0.0.1
-      - NODE_ENV=development
       - REACT_APP_DOMAIN_NAME=${DOMAIN_NAME:-http://127.0.0.1}
       - REACT_APP_BACKEND_PORT=${BACKEND_PORT:-8080}
   nginx:
     container_name: dm-nginx
     image: nginx:1.20-alpine
-    volumes:
-      - ./nginx/templates:/etc/nginx/templates
     ports:
       - ${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}
       - ${BACKEND_PORT:-8080}:${BACKEND_PORT:-8080}
