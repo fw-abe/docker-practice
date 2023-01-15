@@ -2,9 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  console.log(process.env)
-  const backendUrl = `http://127.0.0.1:${process.env.FRONTEND_LOCAL_PORT}/hello`;
-  fetch(backendUrl).then(res => console.log(res));
+  console.log(process.env);
+  const backendUrl = `${process.env.REACT_APP_DOMAIN_NAME}:${process.env.REACT_APP_BACKEND_PORT}`;
+  fetch(`${backendUrl}/hello`).then(res => console.log(res));
   
   return (
     <div className="App">
