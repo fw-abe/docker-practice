@@ -17,16 +17,3 @@ services:
     environment:
       - REACT_APP_DOMAIN_NAME=${DOMAIN_NAME:-http://127.0.0.1}
       - REACT_APP_BACKEND_PORT=${BACKEND_PORT:-8080}
-  nginx:
-    container_name: dm-nginx
-    image: nginx:1.20-alpine
-    ports:
-      - ${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}
-      - ${BACKEND_PORT:-8080}:${BACKEND_PORT:-8080}
-    environment:
-      - FRONTEND_PORT=${FRONTEND_PORT:-3000}
-      - BACKEND_PORT=${BACKEND_PORT:-8080}
-      - DOMAIN_SANS_PROTOCOL:=127.0.0.1 # default when not .env DOMAIN_NAME not set
-    depends_on:
-      - frontend
-    restart: always
