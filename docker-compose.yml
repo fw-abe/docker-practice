@@ -7,6 +7,8 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
+    environment:
+      - BACKEND_PORT
   frontend:
     container_name: dm-frontend
     build:
