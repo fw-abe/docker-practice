@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../.env;
+. .env;
 if [[ ! -d ../nginx/certbot-webroot ]]; then
     mkdir ../nginx/certbot-webroot;
 fi;
