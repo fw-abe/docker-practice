@@ -26,7 +26,6 @@ services:
     environment:
       - FRONTEND_PORT=${FRONTEND_PORT:-3000}
       - BACKEND_PORT=${BACKEND_PORT:-8080}
-      - DOMAIN_SANS_PROTOCOL:=$${DOMAIN_NAME//(http|https):\/\//} # nginx doesn't want protocol in conf
       - DOMAIN_SANS_PROTOCOL:=127.0.0.1 # default when not .env DOMAIN_NAME not set
     depends_on:
       - frontend
