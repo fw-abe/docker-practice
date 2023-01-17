@@ -18,8 +18,8 @@ fi
 
 . $ENV_FILE
 
-if [ -z "$DOMAIN_NAME" ]; then
-    echo "DOMAIN_NAME env value is required"
+if [ -z "$DOMAIN_NAME_SANS_PROTOCOL" ]; then
+    echo "DOMAIN_NAME_SANS_PROTOCOL env value is required"
     exit 1;
 fi
 
