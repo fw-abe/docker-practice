@@ -1,10 +1,10 @@
 #!/bin/bash
 
 . .env;
-if [[ ! -d ../nginx/certbot-webroot ]]; then
-    mkdir ../nginx/certbot-webroot;
+if [[ ! -d ./nginx/certbot-webroot ]]; then
+    mkdir ./nginx/certbot-webroot;
 fi;
-docker compose -f ../docker-compose.yml -f ../docker-compose.prod.yml run \
+docker compose -f docker-compose.yml -f docker-compose.prod.yml run \
     --entrypoint certbot \
     certbot renew -a webroot --webroot-path /var/www;
 
