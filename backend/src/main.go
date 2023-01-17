@@ -22,20 +22,20 @@ func main() {
 	r := gin.Default()
 	r.Use(CORSMiddleware())
 
-	r.GET("/hello", func(c *gin.Context) {
+	r.GET("/api/hello", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
 			"greet": "hello, world!",
 		})
 	})
 
-	r.GET("/echo/:echo", func(c *gin.Context) {
+	r.GET("/api/echo/:echo", func(c *gin.Context) {
 		echo := c.Param("echo")
 		c.JSON(http.StatusOK, gin.H{
 			"echo": echo,
 		})
 	})
 
-	r.POST("/upload", func(c *gin.Context) {
+	r.POST("/api/upload", func(c *gin.Context) {
 		form, _ := c.MultipartForm()
 		files := form.File["upload[]"]
 
@@ -50,7 +50,7 @@ func main() {
 		})
 	})
 
-	r.GET("/products", GetProducts)
+	r.GET("/api/products", GetProducts)
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
