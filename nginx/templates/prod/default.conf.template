@@ -20,8 +20,8 @@ server {
 
     index index.html;
 
-    ssl_certificate /etc/letsencrypt/live/$DOMAIN_SANS_PROTOCOL/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN_SANS_PROTOCOL/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/${DOMAIN_SANS_PROTOCOL}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN_SANS_PROTOCOL}/privkey.pem;
 
     # React Assets
     location / {
