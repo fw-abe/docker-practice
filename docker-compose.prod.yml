@@ -4,13 +4,33 @@ services:
   frontend:
     volumes:
       - frontend-build:/app/build
+    environment:
+      - NODE_ENV=production
   nginx:
     volumes:
       - ./nginx/templates/prod:/etc/nginx/templates
       - frontend-build:/usr/share/nginx/html
+      - /etc/letsencrypt/:/etc/letsencrypt/
+      - ./nginx/certbot-webroot:/certbot-webroot
     ports:
       - 80:80
       - 443:443
-      
+    ports:
+      - ${FRONTEND_PORT:-3000}:${FRONTEND_PORT:-3000}
+      - ${BACKEND_PORT:-443}:${BACKEND_PORT:-443}
+    environment:
+      - FRONTEND_PORT=${FRONTEND_PORT:-3000}
+      - BACKEND_PORT=${BACKEND_PORT:-8080}
+      - DOMAIN_SANS_PROTOCOL:=$${DOMAIN_NAME//(http|https):\/\//} # nginx doesn't want protocol in conf
+      - DOMAIN_SANS_PROTOCOL:=127.0.0.1 # default when not .env DOMAIN_NAME not set
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - ./nginx/certbot-webroot:/var/www/
+    restart: "no"
+    entrypoint: ["echo"]
+    command: ["exiting"]
+
 volumes:
   frontend-build:
