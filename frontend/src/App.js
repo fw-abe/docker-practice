@@ -3,7 +3,7 @@ import './App.css';
 
 function App() {
   console.log(process.env);
-  const backendUrl = `${process.env.REACT_APP_DOMAIN_NAME}:${process.env.REACT_APP_BACKEND_PORT}`;
+  const backendUrl = `${process.env.REACT_APP_DOMAIN_NAME}/api`;
   fetch(`${backendUrl}/hello`).then(res => console.log(res));
   
   return (
